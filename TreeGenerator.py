@@ -57,22 +57,26 @@ class Tree:
 
 
 class Node:
-    CHILD_LIMIT = 0
 
-    def __init__(self, length):
+    def __init__(self, weight):
         self.children = []
-        self.length = length * random.randint(1, length)
+        self.CHILD_LIMIT = weight
+        self.length = weight * random.randint(1, weight)
 
     def get_num_children(self):
         return len(self.children)
 
     def add_child(self, node):
-        self.children.append(node)
+        if len(self.children) < self.CHILD_LIMIT:
+            self.children.append(node)
+            return True
+        else:
+            return False
 
-    def remove_child(self, node):
+    def remove_child_node(self, node):
         self.children.remove(node)
 
-    def remove_child(self, index):
+    def remove_child_index(self, index):
         self.children.remove(self.children[index])
 
 
